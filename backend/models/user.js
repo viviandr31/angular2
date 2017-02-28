@@ -5,8 +5,8 @@ var connection = mysql.createConnection({
     user: 'root',
     password: 'root',
 	database: 'webpackcli',
-    port: 3306,
-    socketPath: '/tmp/mysql.sock'
+    port: 8889,
+    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
 connection.connect(function() {
@@ -21,6 +21,10 @@ module.exports.findAll = function(callback) {
 
 module.exports.addUser = function(data, callback) {
 	connection.query("INSERT INTO users SET ?", data, callback);
+}
+
+module.exports.deleteUser = function(username, callback) {
+	connection.query("DELETE FROM users WHERE username = '" + username + "'", callback);
 }
 
 module.exports.findByUsername = function(username, callback) {

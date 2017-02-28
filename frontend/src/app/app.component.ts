@@ -10,7 +10,7 @@ import { UserService } from './service/user.service';
 
 export class AppComponent implements OnInit {
 
-	title = 'POST Request';
+	title = 'Angular2 + Node.js';
 	username: string;
 	password: string;
 	results = [];
@@ -44,6 +44,21 @@ export class AppComponent implements OnInit {
 	    		this.results.unshift(data);
 	    	}
 	      this.password = "";
+	      this.username = "";
+	    });
+	}
+
+	deleteUser(username) {
+		var data = {
+			username: username,
+		};
+
+	  var result = this.userService.deleteUser(data)
+	    .subscribe(res => {
+	    	if(res.success == "true") {
+	    		// this.results.unshift(data);
+					this.results = this.results.filter(h => h.username != data['username']);
+	    	}
 	      this.username = "";
 	      console.log(res);
 	    });

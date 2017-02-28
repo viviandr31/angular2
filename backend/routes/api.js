@@ -25,11 +25,23 @@ router.post('/adduser', function(req, res, next) {
 				};
 				user.addUser(data, function(err, info) {
 					if(err) throw err;
-					console.log(info);
+					// console.log(info);
+					// console.log(info['insertId']);
+					// console.log(res);
+					res['insertId'] = info['insertId'];
 					user.sendResponse(true, res);
 				});
 			});
 		};
+	});
+});
+
+router.post('/deleteuser', function(req, res, next) {
+	var data = req.body;
+	user.deleteUser(data.username, function(err, info) {
+		if(err) throw err;
+		console.log(info);
+		user.sendResponse(true, res);
 	});
 });
 

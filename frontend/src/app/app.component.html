@@ -1,28 +1,38 @@
-<h1>
+
+<h3>
   {{title}}
-</h1>
-<h3>This form will add the user data with encrypted password to the MySQL database:</h3><br>
+</h3>
 
-<form (submit)="addUser(username, password)">
-	<input class="form-control" type="text" name="username" [(ngModel)]="username" placeholder="Enter Username"><br>
-	<input class="form-control" type="password" name="password" [(ngModel)]="password" placeholder="Enter Password"><br>
-	<button class="btn btn-default btn-block" type="submit">Add</button>
-</form>
-<br>
 
-<div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title" *ngIf="results.length == 0">
-				No Users
-			</h3>
-			<h3 class="panel-title" *ngIf="results.length !== 0">
-				Users Added:
-			</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<p>This form will add the user data with encrypted password to the MySQL database:</p>
+		<form (submit)="addUser(username, password)">
+			<input class="form-control" type="text" name="username" [(ngModel)]="username" placeholder="Enter Username"><br>
+			<input class="form-control" type="password" name="password" [(ngModel)]="password" placeholder="Enter Password"><br>
+			<button class="btn btn-primary" type="submit">Add</button>
+		</form>
+	</div>
+
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title" *ngIf="results.length == 0">
+					No Users
+				</h4>
+				<h4 class="panel-title" *ngIf="results.length !== 0">
+					Users Added:
+				</h4>
+			</div>
 		</div>
+		<ul class="heroes">
+			<li *ngFor="let user of results"> 
+				<span>{{user.username}}</span>
+				<button class="delete"
+     			 (click)="deleteUser(user.username)">x</button>
+			</li>
+		</ul>	
+		<br>
 	</div>
-	<div *ngFor="let user of results" class="panel panel-body">
-		Username: {{user.username}}
-	</div>
-	<br>
+	
 </div>

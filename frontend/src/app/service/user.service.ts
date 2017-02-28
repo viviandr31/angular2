@@ -23,5 +23,13 @@ export class UserService {
       .map(res => res.json());
   }
 
+  deleteUser(data) {
+    let headers = new Headers({ "Content-Type": "application/json" });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:3000/api/deleteuser', JSON.stringify(data), options)
+      .map(res => res.json());
+  }
+
 
 }
